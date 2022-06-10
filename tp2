@@ -1,0 +1,56 @@
+//Declaración de variables
+int tam;
+int cant =20;
+float x;
+float y;
+int barWidth = 20;
+int lastBar = -1;
+float d;
+
+//Funciones propias con y sin parámetros
+//Reiniciar el programa: volver variables a estado original.
+
+void setup(){
+  size (600,600);
+  background (0);
+  tam = width/cant+2;
+  noStroke();
+  x = width/2;
+  y = height/2;
+  colorMode(HSB, height, height, height);  
+  d = dist(0, 0, width, height);
+}
+void draw(){
+  //
+  //Fondo
+for (int x=0; x<cant; x++){
+  for(int y=0; y<cant; y++){
+    if((x+y)%2==0){
+      fill(255);
+    }else{
+      fill(100);
+    }
+    ellipse (x*tam, y*tam,tam,tam);
+}
+}
+//Pupilas
+for (int x=0; x<cant; x++){
+  for(int y=0; y<cant; y++){
+    if((x+y)%2==0){
+      fill(mouseY, height, height);
+    }else{
+      fill(100);
+    }
+    ellipse (x*tam, y*tam,5,25);
+}
+}
+//
+fill(0);
+for(int i = 0; i <= width; i += 20) {
+    for(int j = 0; j <= height; j += 20) {
+      float size = dist(mouseX, mouseY, i, j);
+      size = size/d * 150;
+      ellipse(i, j, size, size);
+  }
+}
+}
