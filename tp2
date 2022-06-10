@@ -7,6 +7,7 @@ int barWidth = 20;
 int lastBar = -1;
 float d;
 
+
 //Funciones propias con y sin parámetros
 //Reiniciar el programa: volver variables a estado original.
 
@@ -19,6 +20,8 @@ void setup(){
   y = height/2;
   colorMode(HSB, height, height, height);  
   d = dist(0, 0, width, height);
+  mouseX= 300;
+  mouseY= 300;
 }
 void draw(){
   //
