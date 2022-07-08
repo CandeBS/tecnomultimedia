@@ -1,3 +1,5 @@
+//HOLA PROFE, el trabajo no está terminado. Estoy consciente de que voy para el recuperatorio, a pesar de esto queria que viera lo que avancé. Muchas gracias por leer!
+
 //Variables
 PImage fondo;
 PImage digglet;
@@ -5,7 +7,7 @@ PImage p2;
 PImage p1;
 String estado;
 int dubi, diggletX1, diggletX2,diggletX3,diggletX4,diggletX5,diggletX6,diggletX7,diggletX8,diggletY1;
-int diggletY2,diggletY3,diggletY4,diggletY5,diggletY6,diggletY7,diggletY8, tiempo;
+int diggletY2,diggletY3,diggletY4,diggletY5,diggletY6,diggletY7,diggletY8, tiempo,puntos;
 
 void setup(){
   size (800,800);
@@ -23,37 +25,34 @@ void setup(){
   p2 = loadImage ("pantallains.png");
   
   //Digglets posiciones
-  diggletX1 = 143;
-  diggletX2 = 503;
-  diggletX3 = 679;
-  diggletX4 = 1;
-  diggletX5 = 1;
-  diggletX6 = 1;
-  diggletX7 = 1;
-  diggletX8 = 1;
-  diggletY1 = 480;
-  diggletY2 = 480;
-  diggletY3 = 480;
-  diggletY4 = 480;
-  diggletY5 = 700;
-  diggletY6 = 700;
-  diggletY7 = 700;
-  diggletY8 = 700;
+  diggletX1 = 130;
+  diggletX2 = 330;
+  diggletX3 = 530;
+  diggletX4 = 730;
+  diggletX5 = 130;
+  diggletX6 = 330;
+  diggletX7 = 530;
+  diggletX8 = 730;
+  diggletY1 = 450;
+  diggletY2 = 450;
+  diggletY3 = 450;
+  diggletY4 = 450;
+  diggletY5 = 600;
+  diggletY6 = 600;
+  diggletY7 = 600;
+  diggletY8 = 600;
  
 }
 
 void draw(){
   println(mouseX, mouseY);
   //Imagenes
-  image (fondo, 0, 0);
+    image (fondo, 0, 0);
   fondo.resize (800,800);
-  //Digglets
-  //digglet -> 210,100 (10,1)
   digglet.resize (210,100);
   p1.resize(800,800);
   p2.resize(800,800);
   digglets();
-  tiempo();
   
   if (estado.equals ("Inicio")){
     background (0);
@@ -64,8 +63,20 @@ void draw(){
    image ( p2 , 0,0);
    text ("Clikea con el mazo a todos los digglets que",width/2, height/6);
    text ("veas en la pantalla",width/2, height/6+45);
+ }else if (estado.equals("juego")){
+   image (fondo, 0, 0);
+  fondo.resize (800,800);
+     fill (255);
+   textSize(200);
+   text("Puntos:" + puntos, 300,300);
+
+ }else if (estado.equals("ganar")){
+    background( 200, 200, 0 );
+    text( estado, width/2, height/2 );
+ }else if( estado.equals("perder") ){
+    background( 200, 0, 200 );
+    text( estado, width/2, height/2 );
  }
- 
 }
 
 void digglets(){
@@ -112,26 +123,23 @@ void keyPressed(){
     estado = "Jugar";
 }
   }
-  
-  void tiempo(){
-   if (tiempo > 0 && frameCount%40 == 0){
-     tiempo = tiempo -1;
-   }
+
+  void puntaje(){
+   fill (255);
+   textSize(200);
+   text("Puntos:" + puntos, 300,300);
   }
 //void ganar(){
-  
-
 
 void perder(){
   fill (255);
-  //text("perdiste kpo",100,100);
+  //text("perdiste",100,100);
   //textSize(20);
 }
-void reinicio(){
-  estado = "Inicio";
-  tiempo = 0;
-}
+//void reinicio(){
+  //estado = "Inicio";
+  //tiempo = 0;
+//}
 
-void mouseMoved(){
-  
+void mouseClicked(){
 }
