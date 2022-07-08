@@ -1,0 +1,137 @@
+//Variables
+PImage fondo;
+PImage digglet;
+PImage p2;
+PImage p1;
+String estado;
+int dubi, diggletX1, diggletX2,diggletX3,diggletX4,diggletX5,diggletX6,diggletX7,diggletX8,diggletY1;
+int diggletY2,diggletY3,diggletY4,diggletY5,diggletY6,diggletY7,diggletY8, tiempo;
+
+void setup(){
+  size (800,800);
+  textAlign (CENTER, CENTER);
+  textSize(30);
+  dubi = (int)random (1,8);
+  tiempo = 40;
+  
+   estado = "Inicio";
+   
+  //Imagenes
+  fondo = loadImage("fondo.png");
+  digglet = loadImage ("digglet.png");
+  p1 = loadImage ("pantallaunoo.png");
+  p2 = loadImage ("pantallains.png");
+  
+  //Digglets posiciones
+  diggletX1 = 143;
+  diggletX2 = 503;
+  diggletX3 = 679;
+  diggletX4 = 1;
+  diggletX5 = 1;
+  diggletX6 = 1;
+  diggletX7 = 1;
+  diggletX8 = 1;
+  diggletY1 = 480;
+  diggletY2 = 480;
+  diggletY3 = 480;
+  diggletY4 = 480;
+  diggletY5 = 700;
+  diggletY6 = 700;
+  diggletY7 = 700;
+  diggletY8 = 700;
+ 
+}
+
+void draw(){
+  println(mouseX, mouseY);
+  //Imagenes
+  image (fondo, 0, 0);
+  fondo.resize (800,800);
+  //Digglets
+  //digglet -> 210,100 (10,1)
+  digglet.resize (210,100);
+  p1.resize(800,800);
+  p2.resize(800,800);
+  digglets();
+  tiempo();
+  
+  if (estado.equals ("Inicio")){
+    background (0);
+    image (p1,0,0);
+    text(" Presioná el espacio para empezar", width/2,height/2+50);
+    
+  }else if (estado.equals ("Instrucciones") ){
+   image ( p2 , 0,0);
+   text ("Clikea con el mazo a todos los digglets que",width/2, height/6);
+   text ("veas en la pantalla",width/2, height/6+45);
+ }
+ 
+}
+
+void digglets(){
+  if (tiempo > 0){
+    fill (200,200,200);
+    if (frameCount%30 == 0) {
+    dubi = (int)random (1,8);
+    }
+  
+  if(dubi == 1){
+    image (digglet, diggletX1, diggletY1);
+  }
+  
+    if(dubi == 2){
+    image (digglet, diggletX2,diggletY2);
+    }  
+     if(dubi == 3){
+    image (digglet, diggletX3, diggletY3);
+     }
+    if(dubi == 4){
+    image (digglet, diggletX4, diggletY4);
+    }
+      if(dubi == 5){
+    image(digglet, diggletX5,diggletY5);
+  }
+    if(dubi == 6){
+    image (digglet, diggletX6, diggletY6);
+    }  
+     if(dubi == 7){
+    image (digglet, diggletX7,diggletY7);
+     }
+    if(dubi == 8){
+    image (digglet, diggletX8, diggletY8);
+    }
+  }
+ 
+}
+
+void keyPressed(){
+  if (estado.equals ("Inicio") && key == ' '){
+    estado = "Instrucciones";
+  }
+    if (estado.equals ("Instrucciones") && key == ENTER){
+    estado = "Jugar";
+}
+  }
+  
+  void tiempo(){
+   if (tiempo > 0 && frameCount%40 == 0){
+     tiempo = tiempo -1;
+   }
+  }
+//void ganar(){
+  
+
+
+void perder(){
+  fill (255);
+  //text("perdiste kpo",100,100);
+  //textSize(20);
+}
+void reinicio(){
+  estado = "Inicio";
+  tiempo = 0;
+}
+
+void mouseMoved(){
+  
+}
