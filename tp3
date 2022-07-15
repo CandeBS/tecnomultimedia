@@ -1,16 +1,23 @@
-//HOLA PROFE, el trabajo no está terminado. Estoy consciente de que voy para el recuperatorio, a pesar de esto queria que viera lo que avancé. Muchas gracias por leer!
+//HOLA PROFE, el trabajo no está terminado. Estoy consciente de que voy para el recuperatorio (si es que hay), a pesar de esto queria que viera lo que avancé. Muchas gracias por leer!
+//
 
-//Variables
+/Variables
 PImage fondo;
 PImage digglet;
+PImage pantganar;
+PImage pantperder;
 PImage p2;
 PImage p1;
 String estado;
+boolean puntoclick = false;
+PFont fuente;
 int dubi, diggletX1, diggletX2,diggletX3,diggletX4,diggletX5,diggletX6,diggletX7,diggletX8,diggletY1;
-int diggletY2,diggletY3,diggletY4,diggletY5,diggletY6,diggletY7,diggletY8, tiempo,puntos;
+int diggletY2,diggletY3,diggletY4,diggletY5,diggletY6,diggletY7,diggletY8, tiempo,puntos,countDown,tiempolimite;
 
 void setup(){
   size (800,800);
+  fuente = createFont("fuentuli.ttf",50);
+  textFont(fuente);
   textAlign (CENTER, CENTER);
   textSize(30);
   dubi = (int)random (1,8);
@@ -20,6 +27,8 @@ void setup(){
    
   //Imagenes
   fondo = loadImage("fondo.png");
+  pantganar = loadImage ("ganar.png");
+  pantperder = loadImage ("perder.png");
   digglet = loadImage ("digglet.png");
   p1 = loadImage ("pantallaunoo.png");
   p2 = loadImage ("pantallains.png");
@@ -52,7 +61,11 @@ void draw(){
   digglet.resize (210,100);
   p1.resize(800,800);
   p2.resize(800,800);
+  pantperder.resize(800,800);
+  pantganar.resize(800,800);
   digglets();
+  
+  fill(0);
   
   if (estado.equals ("Inicio")){
     background (0);
@@ -63,20 +76,37 @@ void draw(){
    image ( p2 , 0,0);
    text ("Clikea con el mazo a todos los digglets que",width/2, height/6);
    text ("veas en la pantalla",width/2, height/6+45);
- }else if (estado.equals("juego")){
+   //JUEGO---------
+ }else if (estado.equals("juego")){ 
    image (fondo, 0, 0);
+   digglets();
   fondo.resize (800,800);
      fill (255);
-   textSize(200);
+   textSize(40);
    text("Puntos:" + puntos, 300,300);
-
- }else if (estado.equals("ganar")){
-    background( 200, 200, 0 );
-    text( estado, width/2, height/2 );
- }else if( estado.equals("perder") ){
-    background( 200, 0, 200 );
-    text( estado, width/2, height/2 );
+   
+   pushMatrix();
+   textSize(40);
+   textAlign(LEFT,LEFT);
+     int ms = millis ()/450;
+  println(ms);
+     countDown = tiempo - ms;
+  if(countDown > 0){
+    if (countDown <=0)
+      estado = "Perder";
+  }
+   text ("Tiempo: " +countDown, 500,40);
+   popMatrix();
+ } else { estado.equals ("Perder"); 
+ image (pantperder,0,0);
+ text( "Acá credulis" , width/2, height/2 );
  }
+   
+
+ if (estado.equals("ganar")){
+    image (pantganar,0,0);
+    text( estado, width/2, height/2 );
+}
 }
 
 void digglets(){
@@ -120,7 +150,7 @@ void keyPressed(){
     estado = "Instrucciones";
   }
     if (estado.equals ("Instrucciones") && key == ENTER){
-    estado = "Jugar";
+    estado = "juego";
 }
   }
 
@@ -129,17 +159,16 @@ void keyPressed(){
    textSize(200);
    text("Puntos:" + puntos, 300,300);
   }
-//void ganar(){
 
-void perder(){
-  fill (255);
-  //text("perdiste",100,100);
-  //textSize(20);
-}
 //void reinicio(){
   //estado = "Inicio";
   //tiempo = 0;
 //}
 
 void mouseClicked(){
+  puntoclick = true;
+  
+  if (puntoclick == true){
+    puntos = puntos + 1;
+  }
 }
