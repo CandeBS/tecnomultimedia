@@ -1,9 +1,8 @@
 class Peces{
  
-  float x, y, t;
-  int pezx, pezy;
+  float x, y, t, pMy = 58.9, radio = 55.8, velocidad = 3;
+  int pezx, pezy, x1;
   boolean drag, atun;
-  
   Peces(){
    x = 200;
    y = 400;
@@ -18,7 +17,7 @@ class Peces{
       drag = false;
     }
     //Variable de atún (area para agarrar al pez)
-    float distancia = dist (x,y, mouseX, mouseY );
+    float distancia = dist (x,y, mouseX, mouseY +100);
     if (distancia < t)
     atun = true;
     else
@@ -39,6 +38,7 @@ class Peces{
    image (pez1,x,t);
    pez1.resize(150,100);
    popStyle();
+   pez3.resize(150,100);
   }
   
   void flechas(){
@@ -56,5 +56,15 @@ class Peces{
         pezy +=3;
   }
   }
+}
+
+void pezmov(){
+image (pez3, pMy,320);
+//pMy Pez move Y
+ pMy = pMy + velocidad;
+   if (pMy > width + radio){
+    pMy = -radio;
+  }
+ 
 }
 }
