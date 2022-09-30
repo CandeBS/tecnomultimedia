@@ -21,5 +21,6 @@ void dibujo(){
   foca1.dibujo();
   foca2.dibujo();
   pez1.dibujo();
+  pececitos.pezmov();
 }
 }
