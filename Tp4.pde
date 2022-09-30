@@ -1,4 +1,6 @@
 //Dibujitos hechos por @Mahoukarp
+// --------------------------------Link video youtube : https://youtu.be/bIhJzppzlnY  --------------------------------
+//Clase llamando al objeto
 Oceano oceanito;
 Peces pececitos;
 
@@ -27,4 +29,5 @@ void draw(){
   oceanito.actualizo();
   oceanito.dibujo();
   pececitos.flechas();
+  pececitos.pezmov();
 }
