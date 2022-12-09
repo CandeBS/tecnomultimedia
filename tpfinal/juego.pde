@@ -2,6 +2,7 @@ class Juego {
   PImage pantinicio, fondojuego, pantperder, instrucciones, pantganar,pantcredi, perso;
   int pantalla = 0;
   String estado;
+  int vida = 7;
 
   int punto;
   Jugador personaje;
@@ -52,7 +53,7 @@ class Juego {
       pantalla = 3;
       ganar();
     } 
-    if (pantalla == 4) {
+    if (vida == 0) {
       pantalla = 4;
       perder();
       musica.pause();
@@ -88,9 +89,10 @@ class Juego {
         algobueno.play();
         algobueno.rewind();
       } else if (obstaculo[i].colision(personaje.x, personaje.y, personaje.ancho, personaje.alto)) {
-        perder();
         mepegaron.play();
         mepegaron.rewind();
+        vida--;
+        println(vida);
       }
     }
   }
@@ -119,6 +121,7 @@ class Juego {
       pantalla = 0;
     }
   }
+  //CREAR VOID REINICIAR, VIDA PUNTOS Y LLEVA A LA DE INICIO
   void movTeclado() {
     personaje.movperso();
   }
