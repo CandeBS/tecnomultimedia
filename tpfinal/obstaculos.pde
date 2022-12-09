@@ -1,6 +1,5 @@
 class Obstaculos {
   int obs = 10; //Número de obstaculos antes que se repitan
-  int tam;
   PImage estrella;
   float x, y, ancho, alto;
 
@@ -24,13 +23,13 @@ class Obstaculos {
   void dibujar() {
     image(estrella, x, y); //dibujo de la estrella
   }
-
+  //La colisión
   boolean colision(float posX_, float posY_, float ancho_, float alto_) {
     if (y-alto/2 < posY_+alto_/2 &&
       y+alto/2 > posY_-alto_/2 &&
       x-ancho/2 < posX_-ancho_/2 &&
       x+ancho/2 > posX_-ancho_/2) {
-      y= random (0,750);
+      y= random (0, 750);
       x= 0;
       return true;
     } else {
