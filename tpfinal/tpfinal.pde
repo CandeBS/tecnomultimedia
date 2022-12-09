@@ -7,6 +7,7 @@ Alumna: Sequeira Biagetti Candela.
 
 //Clase llamando al objeto
 Juego Juego;
+//Musica y sonidos
 import ddf.minim.*;
 Minim minim;
 AudioPlayer mepegaron;
@@ -17,6 +18,7 @@ AudioPlayer musica;
 void setup() {
   size (800, 800);
   Juego = new Juego(); //Llamo a la clase mas polenta
+  //Musica y sonidos en setup
   minim = new Minim(this);
   mepegaron = minim.loadFile("mepegaron.wav");
   algobueno = minim.loadFile("algobueno.wav");
@@ -30,10 +32,3 @@ void keyPressed(){
   Juego.movTeclado();
   Juego.keyPressed();
 }
-
-/* -----------FALTA:
- 1.Lógica de estados:
- <> Pantalla de créditos (con posibilidad de reiniciar el programa).
- 2.Programado íntegramente con POO y que incluya al menos un arreglo de objetos.
- 4.Implementación de alguna librería de sonido.
- */
