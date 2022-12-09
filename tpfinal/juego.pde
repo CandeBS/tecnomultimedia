@@ -88,7 +88,7 @@ class Juego {
         algobueno.play();
         algobueno.rewind();
       } else if (obstaculo[i].colision(personaje.x, personaje.y, personaje.ancho, personaje.alto)) {
-        punto +=1;
+        perder();
         mepegaron.play();
         mepegaron.rewind();
       }
