@@ -1,8 +1,8 @@
-//------link al video explicativo: 
+//------link al video explicativo: https://youtu.be/8-H1mN0TXt8
 /*
 Alumna: Sequeira Biagetti Candela. 
  Legajo: 91463/0
- Dibujos hechos por mi <3
+ Dibujos hechos por mi <3 ( La imagen del coco en los archivos es una referencia/chiste , el juego funciona sin ella)
  */
 
 //Clase llamando al objeto
