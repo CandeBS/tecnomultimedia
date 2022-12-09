@@ -30,13 +30,11 @@ class Obstaculos {
       y+alto/2 > posY_-alto_/2 &&
       x-ancho/2 < posX_-ancho_/2 &&
       x+ancho/2 > posX_-ancho_/2) {
-      y= -50;
-      x= random (0, 600);
+      y= random (0,750);
+      x= 0;
       return true;
     } else {
       return false;
     }
   }
 }
-
-//Ver por donde van los enemigos, no pasan por el medio
