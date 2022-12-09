@@ -1,10 +1,10 @@
 class Juego {
-  PImage pantinicio, fondojuego, pantperder, instrucciones, pantganar,pantcredi, perso;
+  PImage pantinicio, fondojuego, pantperder, instrucciones, pantganar, pantcredi, perso;
   int pantalla = 0;
   String estado;
-  int vida = 7;
-
+  int vida = 5;
   int punto;
+
   Jugador personaje;
   Nubes [] nube;
   Obstaculos [] obstaculo;
@@ -23,8 +23,10 @@ class Juego {
     fondojuego = loadImage ("fondoof.jpg");
     fondojuego.resize(800, 800);
     pantcredi = loadImage ("creditos.jpg");
-    pantcredi.resize(800,800);
+    pantcredi.resize(800, 800);
+    //Para un futuro: no hay que hacer tantos resizes
 
+    //Creando las nubes y las estrellas para que puedan colisionar con la personaje
     nube = new Nubes [10];
     for (int i = 0; i <10; i++) { //Mientras i sea menor que 10 aumenta la i + 1
       nube[i]= new Nubes(random(80, 60)*i*2, random(1, 70)*i*2, 80, 80);
@@ -57,7 +59,9 @@ class Juego {
       pantalla = 4;
       perder();
       musica.pause();
-    } if (pantalla == 5) {
+      musica.rewind();
+    } 
+    if (key == 'c' || key == 'C') {
       pantalla = 5;
       creditos();
     }
@@ -82,12 +86,14 @@ class Juego {
       nube[i].mover () ;
       obstaculo[i].dibujar ();
       obstaculo[i].mover () ;
-      puntos = new Puntos (35,25, punto);
+      puntos = new Puntos (35, 25, punto);
       puntos.dibujar ();
+      //Colisión positiva de la nube (da un punto), con sonido agregado
       if (nube[i].colision(personaje.x, personaje.y, personaje.ancho, personaje.alto)) {
         punto +=1;
         algobueno.play();
         algobueno.rewind();
+        //Colisión negativa de la estrella (te saca vida), con sonido agregado
       } else if (obstaculo[i].colision(personaje.x, personaje.y, personaje.ancho, personaje.alto)) {
         mepegaron.play();
         mepegaron.rewind();
@@ -114,15 +120,19 @@ class Juego {
       pantalla = 2;
     }
     if (key == 'c' || key == 'C') {
-      pantalla = 5;
+      pantalla =5;
+      creditos();
     }
-    if (key == 'r' || key == 'R'){
-      punto = 0;
-      pantalla = 0;
+    if (key == 'r' || key == 'R') {
+      reinicio();
     }
   }
-  //CREAR VOID REINICIAR, VIDA PUNTOS Y LLEVA A LA DE INICIO
   void movTeclado() {
     personaje.movperso();
+  }
+  void reinicio() {
+    pantalla = 0;
+    punto = 0;
+    vida = 5 ;
   }
 }
