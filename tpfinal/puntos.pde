@@ -6,7 +6,7 @@ class Puntos {
     this.y = y;
     this.punto= punto;
   }
-  void dibujar () {
+  void dibujar () { //Dibujo los puntos
     push();
     textSize(20);
     textAlign(CENTER);
