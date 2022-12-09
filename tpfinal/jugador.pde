@@ -15,15 +15,16 @@ class Jugador {
   void dibujar() {
     image (perso, x, y);
   }
+  //Movimiento de la brujita
   void movperso() { 
     if (keyCode == LEFT) {
-      x -=5;
+      x -=8;
     } else if (keyCode == RIGHT) {
-      x +=5;
+      x +=8;
     } else if (keyCode == UP) {
-      y -=5;
+      y -=8;
     } else if (keyCode == DOWN) {
-      y +=5;
+      y +=8;
     }
   }
 }
